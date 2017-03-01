@@ -1,0 +1,18 @@
+[Unit]
+Description=Yahoo Kafka Manager
+Requires=network.target kafka.service
+After=network.target kafka.service
+
+[Service]
+Environment=ZK_HOSTS="localhost:2181"
+Type=simple
+PIDFile=/var/run/kafkamanager.pid
+WorkingDirectory=/opt/kafka-manager
+ExecStart=/opt/kafka-manager/bin/kafka-manager
+ExecStop=
+Restart=on-failure
+SyslogIdentifier=kafka-manager
+
+[Install]
+WantedBy=multi-user.target
+
